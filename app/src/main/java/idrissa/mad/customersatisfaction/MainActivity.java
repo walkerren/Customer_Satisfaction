@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     view.setBackgroundResource( R.drawable.blue_shape);
                     Toast.makeText(MainActivity.this,"Rating "+numButton+" was selected.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Rating "+1+" was selected.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
