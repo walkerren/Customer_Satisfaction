@@ -38,17 +38,19 @@ public class MainActivity extends AppCompatActivity {
                     String resourceName = view.getResources().getResourceName(view.getId());
                     int currButton=Integer.parseInt(resourceName.substring(40));
                     int prevButton=getPreviousID();
-                    setColor(view, currButton,prevButton);
+                    if(currButton!=prevButton){
+                        setColor(view, currButton,prevButton);
+                    }
                 }
             });
         }
     }
 
     public void setColor(View view,int currButton, int prevButton){
-        resetPreviousColor(prevButton);
-        view.setBackgroundResource( R.drawable.blue_shape);  /** When selected, button changes to blue colour*/
-        setPreviousID(currButton);
-        Toast.makeText(MainActivity.this,"Rating "+currButton+" was selected.", Toast.LENGTH_SHORT).show();
+            resetPreviousColor(prevButton);
+            view.setBackgroundResource( R.drawable.blue_shape);  /** When selected, button changes to blue colour*/
+            setPreviousID(currButton);
+            Toast.makeText(MainActivity.this,"Rating "+currButton+" was selected.", Toast.LENGTH_SHORT).show();
     }
 
     public void submitRating(View view){
