@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0;i<10;i++){
             String btn_id="btn_"+(i+1);
             butID = getResources().getIdentifier(btn_id, "id", getPackageName());
-            System.out.println(butID);
             btn_array[i] =  (Button)findViewById(butID);
             btn_array[i].setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
             resetPreviousColor(prevButton);
             view.setBackgroundResource( R.drawable.blue_shape);  /** When selected, button changes to blue colour*/
             setPreviousID(currButton);
-            Toast.makeText(MainActivity.this,"Rating "+currButton+" was selected.", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this,"Rating "+currButton+" was selected.", Toast.LENGTH_SHORT).show();
+            //Log.i("MSG","Rating "+currButton+" was selected.");
     }
 
     public void submitRating(View view){
