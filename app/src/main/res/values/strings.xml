@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">Customer Satisfaction</string>
-    <dimen name="sixty">60dp</dimen>
-    <dimen name="marg">5dp</dimen>
 </resources>

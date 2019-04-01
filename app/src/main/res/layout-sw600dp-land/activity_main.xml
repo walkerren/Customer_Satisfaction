@@ -96,9 +96,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Highly Unsatisfactory"
+            android:textColor="@color/colorRed1"
             android:textSize="12dp"
             android:gravity="left"
-
+            android:textStyle="italic"
             android:layout_weight="1"
             />
 
@@ -108,7 +109,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
+            android:textColor="@color/colorGreen2"
             android:text="Highly Satisfactory"
+            android:textStyle="italic"
             android:textSize="12dp" />
     </LinearLayout>
 
@@ -234,7 +237,7 @@
         android:layout_centerHorizontal="true"
         android:text="SUBMIT"
         android:textSize="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="17dp"
         android:onClick="submitRating"
         />
 
