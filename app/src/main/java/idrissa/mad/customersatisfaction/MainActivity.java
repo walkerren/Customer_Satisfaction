@@ -1,7 +1,9 @@
 package idrissa.mad.customersatisfaction;
 
 
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -50,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
             resetPreviousColor(prevButton);
             view.setBackgroundResource( R.drawable.blue_shape);  /** When selected, button changes to blue colour*/
             setPreviousID(currButton);
-            //Toast.makeText(MainActivity.this,"Rating "+currButton+" was selected.", Toast.LENGTH_SHORT).show();
-            //Log.i("MSG","Rating "+currButton+" was selected.");
     }
 
     public void submitRating(View view){
@@ -59,10 +59,36 @@ public class MainActivity extends AppCompatActivity {
         if(rating==0){
             Toast.makeText(MainActivity.this,"Please choose a Rating", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(MainActivity.this,"Final Rating "+rating+" was selected.", Toast.LENGTH_SHORT).show();
             resetPreviousColor(rating);
+            showSuccessDialog();
             setPreviousID(0);
         }
+    }
+
+    public void showSuccessDialog(){
+        ViewGroup viewGroup = findViewById(android.R.id.content);
+
+        //then we will inflate the custom alert dialog xml that we created
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.success_dialog, viewGroup, false);
+
+        //Now we need an AlertDialog.Builder object
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //setting the view of the builder to our custom view that we already inflated
+        builder.setView(dialogView);
+
+        Button btn_close=dialogView.findViewById(R.id.buttonOk);
+
+        //finally creating the alert dialog and displaying it
+        final AlertDialog alertDialog = builder.create();
+
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
     }
 
     public void resetPreviousColor(int prevButton){
