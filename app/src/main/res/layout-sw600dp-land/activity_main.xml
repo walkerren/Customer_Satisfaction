@@ -237,7 +237,7 @@
         android:layout_centerHorizontal="true"
         android:text="SUBMIT"
         android:textSize="15dp"
-        android:layout_marginTop ="17dp"
+        android:layout_marginTop="17dp"
         android:onClick="submitRating"
         />
 
