@@ -16,19 +16,33 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.Scanner;
+
+public class MainActivity extends AppCompatActivity implements ListenSocket.MainCallback {
     int butID=0;
+    TextView txt_ticket;
+    TextView txt_counter;
+    TextView txt_service;
     static int PREV_BUTID;
     Button btn_array []=new Button[10];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbarTop = (Toolbar) findViewById(R.id.toolbar_top);
         TextView mTitle = (TextView) toolbarTop.findViewById(R.id.toolbar_title);
         setSupportActionBar(toolbarTop);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        txt_ticket=findViewById(R.id.textView);
+        txt_counter=findViewById(R.id.textView2);
+        txt_service=findViewById(R.id.textView3);
+
         PREV_BUTID=0;
         for(int i=0;i<10;i++){
             String btn_id="btn_"+(i+1);
@@ -45,6 +59,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
+        }
+
+        try {
+            createSocket();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -63,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
             showSuccessDialog();
             setPreviousID(0);
         }
+    }
+
+    public void createSocket() throws IOException {
+        new ListenSocket(this).execute();
     }
 
     public void showSuccessDialog(){
@@ -135,5 +159,13 @@ public class MainActivity extends AppCompatActivity {
 
     public int getPreviousID(){
         return PREV_BUTID;
+    }
+
+    @Override
+    public void updateTextview(String myString) {
+        txt_ticket.setText(myString);
+        txt_counter.setText(myString);
+        txt_service.setText(myString);
+        //Log.i("CONNECTION ACCEPTED","UPDATE TEXTVIEW");
     }
 }
